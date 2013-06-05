@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title></title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.1.0/pure-nr-min.css">
+	</head>
+	<body>
+		<div id="control" class="pure-g"></div>
+
+		<script id="template" type="text/mustache">
+			<div class="pure-u-1-2">
+				<h2>Background</h2>
+				<button class="pure-button btn_bg" data-id="1">1</button>
+				<button class="pure-button btn_bg" data-id="2">2</button>
+			</div>
+			<div class="pure-u-1-2">
+				<h2>Foreground</h2>
+				<button class="pure-button btn_fg" data-id="1">1</button>
+				<button class="pure-button btn_fg" data-id="2">2</button>
+			</div>
+			<div class="pure-u-1-1">
+				<h2>&nbsp;</h2>
+				<button class="pure-button btn_make {{^state.makeEnabled}}pure-button-disabled{{/state.makeEnabled}}">Make</button>
+			</div>
+			<div>
+				{{#state.bgLoaded}}
+				BG
+				{{/state.bgLoaded}}
+				{{#state.fgLoaded}}
+				FG
+				{{/state.fgLoaded}}
+			</div>
+		</script>
+
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src=" http://canjs.us/release/latest/can.jquery.js"></script>
+		<script src="http://canjs.com/release/latest/can.view.mustache.js"></script>
+		<script src="observables.js"></script>
+	</body>
+</html>
