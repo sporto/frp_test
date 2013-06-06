@@ -10,7 +10,8 @@
 				bgLoading: false,
 				bgLoaded: false,
 				fgLoading: false,
-				fgLoaded: false
+				fgLoaded: false,
+				making: false
 			});
 			var template = can.view("#template", {
 				state: this.state
@@ -23,33 +24,47 @@
 			var self = this;
 			this.state.bind('change', function(ev, attr, how, newVal, oldVal) {
 				var allLoaded = this.attr('bgLoaded') && this.attr('fgLoaded');
-				console.log('allLoaded', allLoaded);
+				//console.log('allLoaded', allLoaded);
 				this.attr('makeEnabled', allLoaded);
 			});
 		},
 
-		'.btn_bg click': function(ele, ev) {
-			this.loadImg('bg', ele.data('id'));
+		'.selectors button click': function(ele, ev) {
+			console.log('selector');
+			var kind = ele.data('kind');
+			var theme = ele.data('theme');
+			this.state.attr('making', false);
+			this.loadImg(kind, theme);
 		},
-		'.btn_fg click': function(ele, ev) {
-			this.loadImg('fg', ele.data('id'));
-		},
+	
 		'.btn_make click': function(ele, ev) {
 			this.make();
 		},
 
-		loadImg: function(kind, id) {
+		loadImg: function(kind, theme) {
 			var self = this;
 			this.state.attr(kind + 'Loading', true);
 			this.state.attr(kind + 'Loaded', false);
-			setTimeout(function() {
+
+			this.loadImageService(theme, function (res) {
+				self.state.attr(kind + 'Url', res);
 				self.state.attr(kind + 'Loading', false);
 				self.state.attr(kind + 'Loaded', true);
+			});
+
+		},
+
+		// This is a simulated external service that
+		// gets a parameter
+		// and returns an image url
+		loadImageService: function (theme, cb) {
+			return setTimeout(function() {
+				cb("http://lorempixel.com/600/200/" + theme);
 			}, 1500);
 		},
 
 		make: function() {
-			console.log('make');
+			this.state.attr('making', true);
 		}
 	});
 

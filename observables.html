@@ -6,34 +6,71 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 
-		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.1.0/pure-nr-min.css">
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.min.css" rel="stylesheet">
+		<link href="app.css" rel="stylesheet">
 	</head>
 	<body>
-		<div id="control" class="pure-g"></div>
+		<div class="container" id="control"></div>
 
 		<script id="template" type="text/mustache">
-			<div class="pure-u-1-2">
-				<h2>Background</h2>
-				<button class="pure-button btn_bg" data-id="1">1</button>
-				<button class="pure-button btn_bg" data-id="2">2</button>
+			
+			<div class="row selectors">
+				<div class="span4">
+					<h2>Background</h2>
+					<button class="btn" data-kind="bg" data-theme="nature">Nature</button>
+					<button class="btn" data-kind="bg" data-theme="abstract">Abstract</button>
+					{{#state.bgLoading}}
+						<i class="icon-spinner icon-spin icon-large"></i>
+					{{/state.bgLoading}}
+				</div>
+				<div class="span4">
+					<h2>Foreground</h2>
+					<button class="btn" data-kind="fg" data-theme="people">People</button>
+					<button class="btn" data-kind="fg" data-theme="food">Food</button>
+					{{#state.fgLoading}}
+						<i class="icon-spinner icon-spin icon-large"></i>
+					{{/state.fgLoading}}
+				</div>
 			</div>
-			<div class="pure-u-1-2">
-				<h2>Foreground</h2>
-				<button class="pure-button btn_fg" data-id="1">1</button>
-				<button class="pure-button btn_fg" data-id="2">2</button>
+
+			
+
+			<div class="row">
+				<hr />
+
+				<div class="span8">
+					<div class="composition">
+						<div class="bg">
+						
+							{{#state.bgLoaded}}
+								<img src="{{state.bgUrl}}" alt="" />
+							{{/state.bgLoaded}}
+						</div>
+						<div class="fg">
+						
+							{{#state.fgLoaded}}
+								<img src="{{state.fgUrl}}" alt="" />
+							{{/state.fgLoaded}}
+
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="pure-u-1-1">
-				<h2>&nbsp;</h2>
-				<button class="pure-button btn_make {{^state.makeEnabled}}pure-button-disabled{{/state.makeEnabled}}">Make</button>
+
+			
+
+			<div class="row">
+				<hr />
+
+				<div class="span8">
+					<button class="btn btn_make {{^state.makeEnabled}}disabled{{/state.makeEnabled}}">Make</button>
+					{{#state.making}}
+						<i class="icon-spinner icon-spin icon-large"></i> Making
+					{{/state.making}}
+				</div>
 			</div>
-			<div>
-				{{#state.bgLoaded}}
-				BG
-				{{/state.bgLoaded}}
-				{{#state.fgLoaded}}
-				FG
-				{{/state.fgLoaded}}
-			</div>
+
 		</script>
 
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

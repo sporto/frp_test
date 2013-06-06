@@ -1,0 +1,24 @@
+.composition {
+	position: relative;
+	height: 210px;
+}
+.composition .bg {
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	width: 600px;
+	height: 200px;
+	background-color: #ddd;
+}
+.composition .fg {
+	left: 25px;
+	top: 25px;
+	position: absolute;
+	width: 550px;
+	height: 150px;
+	background-color: #aaa;
+}
+.composition .fg img{
+	height: 150px;
+	width: 550px;
+}
