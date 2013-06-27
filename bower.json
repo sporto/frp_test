@@ -9,6 +9,7 @@
   "dependencies": {
     "jquery": "~2.0.2",
     "CanJS": "~1.1.6",
-    "bacon": "~0.5.0"
+    "bacon": "~0.5.0",
+    "reactor": "~0.0.5"
   }
 }
