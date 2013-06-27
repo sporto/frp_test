@@ -1,0 +1,14 @@
+{
+  "name": "frp_test",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.2",
+    "CanJS": "~1.1.6",
+    "bacon": "~0.5.0"
+  }
+}
