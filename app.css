@@ -2,21 +2,26 @@
 	position: relative;
 	height: 210px;
 }
-.composition .bg {
+.composition .image {
 	left: 0px;
 	top: 0px;
 	position: absolute;
-	width: 600px;
+	width: 500px;
 	height: 200px;
 	background-color: #ddd;
 }
-.composition .fg {
+.composition .text {
 	left: 25px;
-	top: 25px;
+	top: 120px;
 	position: absolute;
-	width: 550px;
+	width: 450px;
 	height: 150px;
-	background-color: #aaa;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 32px;
+	color: white;
 }
 .composition .fg img{
 	height: 150px;

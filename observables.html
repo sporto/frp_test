@@ -14,44 +14,56 @@
 		<div class="container" id="control"></div>
 
 		<script id="template" type="text/mustache">
-			
-			<div class="row selectors">
-				<div class="span4">
-					<h2>Background</h2>
-					<button class="btn" data-kind="bg" data-theme="nature">Nature</button>
-					<button class="btn" data-kind="bg" data-theme="abstract">Abstract</button>
-					{{#state.bgLoading}}
-						<i class="icon-spinner icon-spin icon-large"></i>
-					{{/state.bgLoading}}
-				</div>
-				<div class="span4">
-					<h2>Foreground</h2>
-					<button class="btn" data-kind="fg" data-theme="people">People</button>
-					<button class="btn" data-kind="fg" data-theme="food">Food</button>
-					{{#state.fgLoading}}
-						<i class="icon-spinner icon-spin icon-large"></i>
-					{{/state.fgLoading}}
-				</div>
-			</div>
+			<h1>Maker</h1>
 
-			
+				<form class="form-horizontal">
+
+					<div class="control-group">
+						<label class="control-label"  for="">Tweets</label>
+
+						<div class="controls">
+							<input type="text" name="input_text" class="span2" value="Chuck Norris" placeholder="" />
+							<button class="btn btn_text" type="button">Fetch Tweets</button>
+
+							{{#if state.loadingText}}
+								<i class="icon-spinner icon-spin icon-large"></i>
+							{{/if}}
+
+						</div>
+					</div>
+
+					
+					<div class="control-group">
+						<label class="control-label" for="">Image</label>
+
+						<div class="controls">
+							<input type="text" name="input_image" class="span2" value="flowers" />
+							<button class="btn btn_image" type="button">Fetch Image</button>
+
+							{{#if state.loadingImage}}
+								<i class="icon-spinner icon-spin icon-large"></i>
+							{{/if}}
+						</div>
+					</div>
+				
+				</form>
 
 			<div class="row">
 				<hr />
 
 				<div class="span8">
 					<div class="composition">
-						<div class="bg">
+						<div class="image">
 						
-							{{#state.bgLoaded}}
-								<img src="{{state.bgUrl}}" alt="" />
-							{{/state.bgLoaded}}
+							{{#if state.image}}
+								<img src="{{state.image}}" alt="" />
+							{{/if}}
 						</div>
-						<div class="fg">
+						<div class="text">
 						
-							{{#state.fgLoaded}}
-								<img src="{{state.fgUrl}}" alt="" />
-							{{/state.fgLoaded}}
+							{{#if state.text}}
+								{{state.text}}  
+							{{/if}}
 
 						</div>
 					</div>
@@ -64,18 +76,20 @@
 				<hr />
 
 				<div class="span8">
-					<button class="btn btn_make {{^state.makeEnabled}}disabled{{/state.makeEnabled}}">Make</button>
-					{{#state.making}}
+					{{#if state.making}}
 						<i class="icon-spinner icon-spin icon-large"></i> Making
-					{{/state.making}}
+					{{/if}}
+					{{#if state.download}}
+						<a href="{{state.download}}">Download your image</a>
+					{{/if}}
 				</div>
 			</div>
 
 		</script>
 
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script src=" http://canjs.us/release/latest/can.jquery.js"></script>
-		<script src="http://canjs.com/release/latest/can.view.mustache.js"></script>
+		<script src="components/jquery/jquery.js"></script>
+		<script src="components/CanJS/can.jquery.js"></script>
+		<script src="components/CanJS/can.view.mustache.js"></script>
 		<script src="observables.js"></script>
 	</body>
 </html>
